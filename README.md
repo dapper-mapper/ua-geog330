@@ -1,4 +1,4 @@
-# Unviersity of Arizona, Introduction to Remote Sensing (GEOG 330)
+# Introduction to Remote Sensing (GEOG 330) - University of Arizona
 
 Welcome to the Introduction to Remote Sensing course taught at the University of Arizona. This GitHub repository is currently used to hosted labs created in Google Earth Engine with the hopes of eventually converting the entire course to this space.
 
