@@ -61,7 +61,9 @@ F- eature Tour overview of the Code Editor
 - Feedback for sending feedback on the Code Editor
 - Suggest a dataset
 
-### Step 2. View Sentinel-2 Imagery for Omaha, NE on 
+### Step 2. View Sentinel-2 Imagery for Omaha, NE on March 16th, 2019
+Sentinel-2 passed over Omaha, NE on March 16th, 2019 following a major flood event and was able to capture a portion of the flood extent. To visualize this Sentinel-2 image copy the Javascript code below () and paste into GEE's code editor. 
+
 ```js
 // Sentinel-2 Image for floods in Omaha in 2019
 var s2_omaha = ee.Image('COPERNICUS/S2/20190316T171039_20190316T171921_T14TQL')
@@ -73,6 +75,9 @@ var s2_viz = {opacity:1,
               gamma:1}
 Map.addLayer(s2_omaha, s2_viz, "Sentinel-2 - Omaha, MO")
 ```
+
+![image](https://user-images.githubusercontent.com/13280304/141536838-b0925512-3803-4ee0-8e45-46511528fd51.png)
+
 
 
 ## Part 2 - Application of your RF Classifier to flooding in Queensland, Australia on 
