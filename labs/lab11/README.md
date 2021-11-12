@@ -26,7 +26,7 @@ Historic flooding in the Midwest has caused unprecedented damage and led nearly 
 
 To realize this methodology, execute the following steps.
 
-#### Step 1. Open Google Earth Engine's Code Editor
+### Step 1. Open Google Earth Engine's Code Editor
 Open Google Earth Engine's (GEE) Code Editor where we will access, analyze and classify Sentinel-2 imagery
 
 https://code.earthengine.google.com/
@@ -61,7 +61,7 @@ F- eature Tour overview of the Code Editor
 - Feedback for sending feedback on the Code Editor
 - Suggest a dataset
 
-#### Step 2. View Sentinel-2 Imagery for Omaha, NE on 
+### Step 2. View Sentinel-2 Imagery for Omaha, NE on 
 ```js
 // Sentinel-2 Image for floods in Omaha in 2019
 var s2_omaha = ee.Image('COPERNICUS/S2/20190316T171039_20190316T171921_T14TQL')
