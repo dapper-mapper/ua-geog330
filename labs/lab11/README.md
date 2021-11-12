@@ -27,7 +27,39 @@ Historic flooding in the Midwest has caused unprecedented damage and led nearly 
 To realize this methodology, execute the following steps.
 
 #### Step 1. Open Google Earth Engine's Code Editor
+Open Google Earth Engine's (GEE) Code Editor where we will access, analyze and classify Sentinel-2 imagery
 
+https://code.earthengine.google.com/
+
+If you are new to the code editor, the image below provides an overview of the different user-interface with each portion of the image described below
+![image](https://user-images.githubusercontent.com/13280304/141536045-c217813a-2d1e-465f-a4f9-f7a20c3cda24.png)
+
+1. Editor Panel
+The Editor Panel is where you write and edit your Javascript code
+
+2. Right Panel
+- Console tab for printing output.
+- Inspector tab for querying map results.
+- Tasks tab for managing long­ running tasks.
+
+3. Left Panel
+- Scripts tab for managing your programming scripts.
+- Docs tab for accessing documentation of Earth Engine objects and methods, as well as a few specific to the Code Editor application
+- Assets tab for managing assets that you upload.
+
+4. Interactive Map
+- For visualizing map layer output
+
+5. Search Bar 
+- for finding datasets and places of interest
+
+6. Help Menu
+- User guide reference documentation
+- Help forum Google group for discussing Earth Engine
+- Shortcuts Keyboard shortcuts for the Code Editor
+F- eature Tour overview of the Code Editor
+- Feedback for sending feedback on the Code Editor
+- Suggest a dataset
 
 #### Step 2. View Sentinel-2 Imagery for Omaha, NE on 
 ```js
