@@ -1,7 +1,7 @@
 # ua-geog330
 
 
-```
+```js
 // Sentinel-2 Image for floods in Omaha in 2019
 var s2_omaha = ee.Image('COPERNICUS/S2/20190316T171039_20190316T171921_T14TQL')
 
