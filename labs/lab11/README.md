@@ -62,7 +62,7 @@ F- eature Tour overview of the Code Editor
 - Suggest a dataset
 
 ### Step 2. View Sentinel-2 Imagery for Omaha, NE on March 16th, 2019
-Sentinel-2 passed over Omaha, NE on March 16th, 2019 following a major flood event and was able to capture a portion of the flood extent. To visualize this Sentinel-2 image copy the Javascript code below (copy whole cell with button in upper right) and paste into GEE's code editor. 
+Sentinel-2 passed over Omaha, NE on March 16th, 2019 following a major flood event and was able to capture a portion of the flood extent. To visualize this Sentinel-2 image copy the Javascript code below (copy whole cell with button in upper right) and paste into GEE's code editor. Then zoom into the Omaha, NE area on the map.
 
 ```js
 // Sentinel-2 Image for floods in Omaha in 2019
@@ -76,7 +76,11 @@ var s2_viz = {opacity:1,
 Map.addLayer(s2_omaha, s2_viz, "Sentinel-2 - Omaha, MO")
 ```
 
+The variable `s2_viz` provides details for how to visualize the Sentinel-2 imagery. Here we use an RGB combination of (B12/B8A/B4) or (SWIR/NIR/Red). The SWIR and NIR bands are particulary useful for visualizing water. However, if you want to change the visualization hover the mouse of the **Layers** button in the Map view and select the :gear: button.
 ![image](https://user-images.githubusercontent.com/13280304/141536838-b0925512-3803-4ee0-8e45-46511528fd51.png)
+
+This will open up a menu of visualization paramters where you can select bands to view and different stretches of the image.
+![image](https://user-images.githubusercontent.com/13280304/141537208-314aefb4-72d7-4cbf-a6fd-339eb86f71b7.png)
 
 
 
