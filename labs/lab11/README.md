@@ -40,7 +40,7 @@ The Editor Panel is where you write and edit your Javascript code
 2. Right Panel
 - Console tab for printing output.
 - Inspector tab for querying map results.
-- Tasks tab for managing long­ running tasks.
+- Tasks tab for managing long running tasks.
 
 3. Left Panel
 - Scripts tab for managing your programming scripts.
@@ -62,7 +62,7 @@ F- eature Tour overview of the Code Editor
 - Suggest a dataset
 
 ### Step 2. View Sentinel-2 Imagery for Omaha, NE on March 16th, 2019
-Sentinel-2 passed over Omaha, NE on March 16th, 2019 following a major flood event and was able to capture a portion of the flood extent. To visualize this Sentinel-2 image copy the Javascript code below () and paste into GEE's code editor. 
+Sentinel-2 passed over Omaha, NE on March 16th, 2019 following a major flood event and was able to capture a portion of the flood extent. To visualize this Sentinel-2 image copy the Javascript code below (copy whole cell with button in upper right) and paste into GEE's code editor. 
 
 ```js
 // Sentinel-2 Image for floods in Omaha in 2019
