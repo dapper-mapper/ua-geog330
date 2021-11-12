@@ -1,5 +1,4 @@
-# ua-geog330
-
+# Lab 11 - Supervised Classification of Flood Events in Google Earth Engine (GEE)
 
 ```js
 // Sentinel-2 Image for floods in Omaha in 2019
