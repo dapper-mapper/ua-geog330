@@ -68,12 +68,14 @@ Sentinel-2 passed over Omaha, NE on March 16th, 2019 following a major flood eve
 // Sentinel-2 Image for floods in Omaha in 2019
 var s2_omaha = ee.Image('COPERNICUS/S2/20190316T171039_20190316T171921_T14TQL')
 
-var s2_viz = {opacity:1,
-              bands:["B12","B8A","B4"],
+// Visualization parameters
+var s2_viz = {bands:["B12","B8A","B4"],
               min:547.0221369809726,
               max:2790.664937848959,
-              gamma:1}
-Map.addLayer(s2_omaha, s2_viz, "Sentinel-2 - Omaha, MO")
+              gamma:1} 
+              
+// Add to the Map
+Map.addLayer(s2_omaha, s2_viz, "Sentinel-2 - Omaha, MO") 
 ```
 
 The variable `s2_viz` provides details for how to visualize the Sentinel-2 imagery. Here we use an RGB combination of (B12/B8A/B4) or (SWIR/NIR/Red). The SWIR and NIR bands are particulary useful for visualizing water. However, if you want to change the visualization hover the mouse of the **Layers** button in the Map view and select the :gear: button.
@@ -84,6 +86,25 @@ This will open up a menu of visualization paramters where you can select bands t
 
 ![image](https://user-images.githubusercontent.com/13280304/141537208-314aefb4-72d7-4cbf-a6fd-339eb86f71b7.png)
 
+### Step 3. Add the JRC Global Surface Water Dataset and Visualize
 
+```js
+// JRC Global Surface Water dataset
+var jrc = ee.ImageCollection("JRC/GSW1_3/YearlyHistory")
+
+// The YearlyHistory dataset has surface water for every year, let's use 2019
+var jrc_2019 = jrc.filter(ee.Filter.eq('year', 2019)).first()
+
+// pixel values of 3 = permanent water in the JRC classification
+var jrc_permanent = jrc_2019.eq(3) 
+  .unmask() // non-water areas are "masked" from the image, we want to sample these areas too
+
+// Finally, the JRC dataset is global so we "clip" to our satellite imager
+var jrc_omaha = jrc_permanent.clip(s2_omaha.geometry())
+
+// Add to the map
+Map.addLayer(jrc_omaha, {palette:["white","blue"]}, "JRC Permanent Water")
+
+```
 
 ## Part 2 - Application of your RF Classifier to flooding in Queensland, Australia on 
