@@ -22,7 +22,7 @@ This lab uses data from Sentinel-2A/2B MultiSpectral Instrument (MSI) Level-1C. 
 Historic flooding in the Midwest has caused unprecedented damage and led nearly $1.3-billion (USD) in damage in areas surrounding Omaha. To assess the damage, the Federal Emergency Management Agency (FEMA) has contracted you to develop a map of inundated area based on available satellite imagery. They have provided you no data to do this exercise and have asked for a rapid response. The methodology you decide includes:
 
 1. A supervised classification of Sentinel-2 imagery given its availability and medium resolution
-2. To create training and validation data you decide to sample an exisiting surface water dataset from the Joint Research Centre (JRC) called the [Global Surface Water dataset](https://storage.googleapis.com/global-surface-water/downloads_ancillary/DataUsersGuidev2.pdf) ([Pekel et al, 2016](https://www.nature.com/articles/nature20584)). 
+2. To create training and validation data you decide to sample an the [Joint Research Centre's (JRC) Global Surface Water dataset](https://storage.googleapis.com/global-surface-water/downloads_ancillary/DataUsersGuidev2.pdf), an existing surface water dataset ([Pekel et al, 2016](https://www.nature.com/articles/nature20584)). 
 
 To realize this methodology, execute the following steps.
 
