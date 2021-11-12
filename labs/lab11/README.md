@@ -107,4 +107,7 @@ Map.addLayer(jrc_omaha, {palette:["white","blue"]}, "JRC Permanent Water")
 
 ```
 
+### Step 4. Sample Training and Validation Data
+
+
 ## Part 2 - Application of your RF Classifier to flooding in Queensland, Australia on 
