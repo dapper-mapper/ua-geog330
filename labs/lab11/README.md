@@ -78,13 +78,20 @@ var s2_viz = {bands:["B12","B8A","B4"],
 Map.addLayer(s2_omaha, s2_viz, "Sentinel-2 - Omaha, MO") 
 ```
 
-The variable `s2_viz` provides details for how to visualize the Sentinel-2 imagery. Here we use an RGB combination of (B12/B8A/B4) or (SWIR/NIR/Red). The SWIR and NIR bands are particulary useful for visualizing water. However, if you want to change the visualization hover the mouse of the **Layers** button in the Map view and select the :gear: button.
+The variable `s2_viz` provides details for how to visualize the Sentinel-2 imagery. Here we use an RGB combination of (B12/B8A/B4) or (SWIR/NIR/Red). The SWIR and NIR bands are particulary useful for visualizing water as these wavelenghts are highly absorbed by water. However, to change the visualization hover the mouse of the **Layers** button in the Map view and select the :gear: button.
 
 ![image](https://user-images.githubusercontent.com/13280304/141536838-b0925512-3803-4ee0-8e45-46511528fd51.png)
 
 This will open up a menu of visualization paramters where you can select bands to view and different stretches of the image.
 
 ![image](https://user-images.githubusercontent.com/13280304/141537208-314aefb4-72d7-4cbf-a6fd-339eb86f71b7.png)
+
+```diff
++ Green
+- Red
+! Orange
+- TASK 1: Create a new visualization of the Sentinel-2 imagery
+```
 
 ### Step 3. Add the JRC Global Surface Water Dataset and Visualize
 
