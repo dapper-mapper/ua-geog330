@@ -159,7 +159,7 @@ Map.addLayer(omaha_sample, {}, "Omaha stratified sample")
 
 In the `stratifiedSample` function, there are a few important paramters. First, the `classBand` argument tells function which band in the `omaha_input` variable is to be used for stratifying the data. The `classValues` and `classPoints` arguments then specify how many points to sample per class, in our case the land (0) and water (1) classes. 
 
-After we collected the sample, the data was added to the Map and also printed out in the console. Invesigate the print outs in the console and answer Questions 3 & 4 using the submission document.
+After we collected the sample, the data was added to the Map and also printed out in the console. Invesigate the print outs in the **Console** and answer Questions 3 & 4 using the submission document.
 
 ![image](https://user-images.githubusercontent.com/13280304/141834304-da933ac7-9313-499b-8b4b-4eca4a46b76e.png)
 
@@ -170,7 +170,7 @@ After we collected the sample, the data was added to the Map and also printed ou
 ```
 
 ### Step 5. Split the sample into training/ validation datasets
-
+Now that we have a sample, we want to further split the sample dataset into a "training" and "validation" set. In short, we will use the training dataset create classifiers that can make prediction of whether a pixel is land or water. Then validation dataset will then be used to assess the skill or accuracy of the trained classifier against new data or data the model/ algorithm has never "seen" before. 
 
 ```js
 // Split the data into training and validation datasets
@@ -192,6 +192,15 @@ var omaha_validation = omaha_sample.filter(ee.Filter.gte('random', split))
 print("# of points in training dataset", omaha_training.size())
 print("# of points in validation dataset", omaha_validation.size())
 ```
+
+Invesigate the print outs in the **Console** and answer Question 5 using the submission document.
+
+```diff
+! QUESTION 4: How many data points are in the training dataset? How many in the validation dataset?
+```
+
+### Step 6. Train a Random Forest (RF) classifier
+
 
 
 // Q2 - what is the accuracy
