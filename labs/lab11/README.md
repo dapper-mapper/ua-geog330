@@ -242,7 +242,7 @@ There are several options we can explore here to improve the overall accuracy of
 2. Convert the Random Forest classifer (`ee.Classifier.smileRandomForest()`) to a SVM classifier
 
 ```diff
-// Question 6: In Table 1, report the accuracy of the four different classifiers you trained represnting combinations of RF/SVM classifiers and all/ visible band inputs. Which classifier has the highest overall accuracy?
+! Question 6: In Table 1, report the accuracy of the four different classifiers you trained represnting combinations of RF/SVM classifiers and all/ visible band inputs. Which classifier has the highest overall accuracy?
 ```
 
 ## Part 2 - Application of your RF Classifier to flooding in Queensland, Australia on 
