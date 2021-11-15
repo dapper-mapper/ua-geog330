@@ -277,7 +277,7 @@ Toggle on the "Flood Map (Omaha)" layer and answer Question 8.
 ! Question 8: Zoom into a flood affected area (e.g. buildings, agricultural fields) and take a screenshot (use the "Snipping Tool") of your flood map. Paste the screenshot into the submission document.
 ```
 
-## Part 2 - Application of your RF Classifier to flooding in Queensland, Australia on 
+## Part 2 - Application of your best classifier to flooding in Queensland, Australia
 
 ### Step 1. New image
 
@@ -308,10 +308,10 @@ var aus_img_geo = s2_qld.geometry().intersection(aus.geometry())
 
 // Get stratified sample
 var qld_sample = qld_input.stratifiedSample({
-  numPoints: 500,
+  numPoints: 800,
   classBand: 'waterClass',
   classValues: [0,1],
-  classPoints: [250, 250],
+  classPoints: [400, 400],
   region: aus_img_geo,
   dropNulls: true,
   geometries: true,
@@ -322,4 +322,81 @@ var qld_sample = qld_input.stratifiedSample({
 Map.addLayer(qld_sample, {}, "Rockhampton stratified sample")
 ```
 
+### Step 3. Evaluate Accuracy
+
+```js
+// Classify the validation data and evaluate the accuracy
+var qld_validated = qld_sample.classify(omaha_classifier)
+var qld_test = qld_validated.errorMatrix('waterClass', 'classification')
+
+// Accuracy print outs
+print("Overall acc., Rockhampton, QLD", qld_test.accuracy())
+print("Producers acc., Rockhampton, QLD", qld_test.producersAccuracy())
+print("Users acc., Rockhampton, QLD", qld_test.consumersAccuracy())
+```
+
+### Step 4. Create Flood Map
+
+```js
+// Classify the Sentinel-2 image in Rockhampton and add to the map
+var qld_classified = qld_input.classify(omaha_classifier)
+Map.addLayer(qld_classified.unmask().selfMask(), {palette:"red"}, "LULC Classification (Rockhampton)")
+
+// Mask permanent water and add flood image to the map
+var qld_flood = maskPermanentWater(qld_classified)
+Map.addLayer(qld_flood.selfMask().clip(aus_img_geo), {palette:"lightblue"}, "Flood Map (Rockhampton)")
+```
+
+### Step 5. 
+
+
+```js
+// Plot sampled features as a scatter chart
+var omaha_chart = ui.Chart.feature.groups({
+  features:omaha_sample, 
+  xProperty:'B8A', 
+  yProperty:'B12', 
+  seriesProperty:'waterClass'})
+  .setSeriesNames(['Water', 'Non-water'])
+  .setChartType('ScatterChart')
+  .setOptions({
+    title: 'Omaha - Scatter Plot of NIR vs SWIR',
+    colors: ['blue', 'red'],
+    pointSize: 4,
+    dataOpacity: 0.7,
+    hAxis: {
+      'title': 'NIR reflectance (B8A)',
+      titleTextStyle: {italic: false, bold: true}
+    },
+    vAxis: {
+      'title': 'SWIR Reflectance (B12)',
+      titleTextStyle: {italic: false, bold: true}
+    }
+  });
+print(omaha_chart)
+
+// plot sampled features as a scatter chart
+var qld_chart = ui.Chart.feature.groups({
+  features:qld_sample, 
+  xProperty:'B8A', 
+  yProperty:'B12', 
+  seriesProperty:'waterClass'})
+  .setSeriesNames(['Non-water', 'Water'])
+  .setChartType('ScatterChart')
+  .setOptions({
+    title: 'Queensland, AUS - Scatter Plot of NIR vs SWIR',
+    colors: ['red', 'blue'],
+    pointSize: 4,
+    dataOpacity: 0.7,
+    hAxis: {
+      'title': 'NIR reflectance (B8A)',
+      titleTextStyle: {italic: false, bold: true}
+    },
+    vAxis: {
+      'title': 'SWIR Reflectance (B12)',
+      titleTextStyle: {italic: false, bold: true}
+    }
+  });
+print(qld_chart)
+```
 
