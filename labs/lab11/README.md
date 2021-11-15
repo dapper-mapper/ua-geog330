@@ -169,4 +169,32 @@ After we collected the sample, the data was added to the Map and also printed ou
 ! QUESTION 4: Why did we use a stratified sample? What might happen to the values in each class if we took a "random" sample across the Sentinel-2 image?
 ```
 
+### Step 5. Split the sample into training/ validation datasets
+
+
+```js
+// Split the data into training and validation datasets
+
+// The randomColumn() method will add a column of uniform random
+// numbers between 0 and 1 in a column named 'random' by default.
+omaha_sample = omaha_sample.randomColumn({seed:seed})
+
+// We want to roughly split the data into 75% training, 25% validation.
+// To do this we filter the random column at the split we're aiming for.
+var split = 0.75
+
+// We can now filter the "omaha_sample" by the split, with ~75% of the
+// data in the training dataset and ~25% in the validation dataset.
+var omaha_training = omaha_sample.filter(ee.Filter.lt('random', split))
+var omaha_validation = omaha_sample.filter(ee.Filter.gte('random', split))
+
+// Print out the number of points in each dataset.
+print("# of points in training dataset", omaha_training.size())
+print("# of points in validation dataset", omaha_validation.size())
+```
+
+
+// Q2 - what is the accuracy
+// Q2a - why is the accuracy measurement an overestimate?
+
 ## Part 2 - Application of your RF Classifier to flooding in Queensland, Australia on 
