@@ -278,8 +278,10 @@ Toggle on the "Flood Map (Omaha)" layer and answer Question 8.
 ```
 
 ## Part 2 - Application of your best classifier to flooding in Queensland, Australia
+Impressed with your work for FEMA and in Omaha, the municipal government of Rockhampton, Queensland, Australia reached out to you and asked for a flood map representing the extent of flooding in 2017. Since you already created a classifier for flood in Omaha, NE you decide as a quick analysis to apply this classifier to Sentinel-2 imagery for the 2017 floods in Rockhampton, QLD. The steps below walk through how to create a flood map for Rockhmapton and evaluate its accuracy.
 
-### Step 1. New image
+### Step 1. View Sentinel-2 Imagery for Rockhampton, QLD on April 8th, 2017
+To view the Sentinel-2 satellite image of flooding in Rockhampton, QLD in 2017 copy and paste the code below into the GEE Code Editor and click **Run**.
 
 ```js
 // ROCKHAMPTON, QUEENSLAND, AUSTRALIA
@@ -288,13 +290,16 @@ var s2_qld = ee.Image("COPERNICUS/S2/20170408T001211_20170408T001211_T55KHQ")
 Map.addLayer(s2_qld, s2_viz, "Sentinel-2 - Queensland, AUS")
 ```
 
+To view the image, pan to Australia and Zoom into the Rockhampton where you see a satellite image added to the map. Invesigate the image, using different visualizations if you choose, and answer Question 9.
+
 ```diff
 ! Question 9: How does the Sentinel-2 image for Rockhampton, Queesland differ from that of Omaha, NE (hint: think about data noise)? How might this present challenges for flood mapping?
 ```
 
-### Step 2. Sample
+### Step 2. Create a stratified sample for Rockhampton, QLD
+To evaluate the accuracy of our classifier, as before we need to create a sample of data that can be used for validation. To create a stratified sample, copy and paste the code below into the GEE Code Editor and click **Run**.
 
-```Js
+```js
 // Clip the area of the JRC Global Surface Water dataset
 // to the same extent as the Sentinel-2 image for Rockhampton, Queensland
 var jrc_qld = jrc_permanent.clip(s2_qld.geometry())
@@ -322,7 +327,8 @@ var qld_sample = qld_input.stratifiedSample({
 Map.addLayer(qld_sample, {}, "Rockhampton stratified sample")
 ```
 
-### Step 3. Evaluate Accuracy
+### Step 3. Evaluate the accuracy of your classifier for the 2017 Rockhampton, QLD floods
+Using the sample generated in the previous step, we can first classify the sample and then evaluate its accuracy. To do this, copy and paste the code below into the GEE Code Editor and click **Run**.
 
 ```js
 // Classify the validation data and evaluate the accuracy
@@ -335,7 +341,14 @@ print("Producers acc., Rockhampton, QLD", qld_test.producersAccuracy())
 print("Users acc., Rockhampton, QLD", qld_test.consumersAccuracy())
 ```
 
-### Step 4. Create Flood Map
+View the print outs in the Console and answer Question 10.
+
+```diff
+! Question 10: What is the overall accuracy of your classifier when applied to the 2017 floods in Rockhampton, QLD? What is the producer's and user's accuracy for the water class?
+```
+
+### Step 4. Create Flood Map for Rockhampton, QLD
+Finally, as before we can also make a map of flooded area. To do this, copy and paste the code below into the GEE Code Editor and click **Run**.
 
 ```js
 // Classify the Sentinel-2 image in Rockhampton and add to the map
@@ -347,56 +360,9 @@ var qld_flood = maskPermanentWater(qld_classified)
 Map.addLayer(qld_flood.selfMask().clip(aus_img_geo), {palette:"lightblue"}, "Flood Map (Rockhampton)")
 ```
 
-### Step 5. 
+Zoom into the Map and view the flood map you created for Rockhampton, QLD. Pay particular attention to areas of misclassification and answer Question 11.
 
-
-```js
-// Plot sampled features as a scatter chart
-var omaha_chart = ui.Chart.feature.groups({
-  features:omaha_sample, 
-  xProperty:'B8A', 
-  yProperty:'B12', 
-  seriesProperty:'waterClass'})
-  .setSeriesNames(['Water', 'Non-water'])
-  .setChartType('ScatterChart')
-  .setOptions({
-    title: 'Omaha - Scatter Plot of NIR vs SWIR',
-    colors: ['blue', 'red'],
-    pointSize: 4,
-    dataOpacity: 0.7,
-    hAxis: {
-      'title': 'NIR reflectance (B8A)',
-      titleTextStyle: {italic: false, bold: true}
-    },
-    vAxis: {
-      'title': 'SWIR Reflectance (B12)',
-      titleTextStyle: {italic: false, bold: true}
-    }
-  });
-print(omaha_chart)
-
-// plot sampled features as a scatter chart
-var qld_chart = ui.Chart.feature.groups({
-  features:qld_sample, 
-  xProperty:'B8A', 
-  yProperty:'B12', 
-  seriesProperty:'waterClass'})
-  .setSeriesNames(['Non-water', 'Water'])
-  .setChartType('ScatterChart')
-  .setOptions({
-    title: 'Queensland, AUS - Scatter Plot of NIR vs SWIR',
-    colors: ['red', 'blue'],
-    pointSize: 4,
-    dataOpacity: 0.7,
-    hAxis: {
-      'title': 'NIR reflectance (B8A)',
-      titleTextStyle: {italic: false, bold: true}
-    },
-    vAxis: {
-      'title': 'SWIR Reflectance (B12)',
-      titleTextStyle: {italic: false, bold: true}
-    }
-  });
-print(qld_chart)
+```diff
+! Question 11: Identify one systematic (repeated) misclassification in your flood map for Rockhampton, QLD (hint - think of something that looks like water, but isn't water). Why is this misclassification important for flood mapping in the context of urban planning, disaster response, or recovery efforts?
 ```
 
