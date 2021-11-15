@@ -87,7 +87,8 @@ This will open up a menu of visualization paramters where you can select bands t
 ![image](https://user-images.githubusercontent.com/13280304/141537208-314aefb4-72d7-4cbf-a6fd-339eb86f71b7.png)
 
 
-:question::question:***Question 1: Create a new visualization of the Sentinel-2 imagery using a different bands combination. Take a screenshot of your new visualization, add to the submission document, and add 1-2 sentences describing the visualization and what you can see with this new visualization.***
+:question:
+***Question 1: Create a new visualization of the Sentinel-2 imagery using a different bands combination. Take a screenshot of your new visualization, add to the submission document, and add 1-2 sentences describing the visualization and what you can see with this new visualization.***
 
 
 ### Step 3. Add the JRC Global Surface Water Dataset and Visualize
@@ -117,9 +118,10 @@ The JRC Global Surface Water dataset was added to the Map. Zoom in and investiga
 
 After investigating the map, answer **Question 2** using the submission document.
 
-```diff
-! QUESTION 2: In the JRC dataset you just prepared, what does a pixel value of 1 represent? 
-```
+
+:question:
+***Question 2: In the JRC dataset you just prepared, what does a pixel value of 1 represent?***
+
 
 ### Step 4. Sample Training and Validation Data
 Now that we have a Sentinel-2 image and a classified map of water (JRC GSW dataset) to stratify our sample, we can go ahead and sample our data. Copy and paste the code below into the GEE Code Editor, as always below the code you have already written, and hit **Run**.
@@ -164,10 +166,11 @@ After we collected the sample, the data was added to the Map and also printed ou
 ![image](https://user-images.githubusercontent.com/13280304/141834304-da933ac7-9313-499b-8b4b-4eca4a46b76e.png)
 
 
-```diff
-! QUESTION 3: How many points were sampled in the land and water classes from the Sentinel-2 dataset? 
-! QUESTION 4: Why did we use a stratified sample? What might happen to the values in each class if we took a "random" sample across the Sentinel-2 image?
-```
+:question:
+***Question 3: How many points were sampled in the land and water classes from the Sentinel-2 dataset?***
+
+***Question 4: Why did we use a stratified sample? What might happen to the values in each class if we took a "random" sample across the Sentinel-2 image?***
+
 
 ### Step 5. Split the sample into training/ validation datasets
 Now that we have a sample, we want to further split the sample dataset into a "training" and "validation" set. In short, we will use the training dataset create classifiers that can make prediction of whether a pixel is land or water. Then validation dataset will then be used to assess the skill or accuracy of the trained classifier against new data or data the model/ algorithm has never "seen" before. 
@@ -195,9 +198,9 @@ print("# of points in validation dataset", omaha_validation.size())
 
 Invesigate the print outs in the **Console** and answer Question 5 using the submission document.
 
-```diff
-! QUESTION 5: How many data points are in the training dataset? How many in the validation dataset?
-```
+:question:
+***Question 5: How many data points are in the training dataset? How many in the validation dataset?***
+
 
 ### Step 6. Train and Evaluate Random Forest (RF) and Support Vector Machine (SVM) Classifiers
 All the prior steps were simply data preparation to TRAIN and EVALUTE (VALIDATE) machine learning classifiers. Now that we have this data prepared we can input our training dataset into several classifiers and evaluate its performance. The code below runs a Random Forest (RF) classifier, evaluates its accuracy, and adds a classified image to the map. Copy and paste the code below into the GEE Code Editor and hit **Run**
@@ -241,9 +244,9 @@ There are several options we can explore here to improve the overall accuracy of
 1. Change the `inputProperties` argument to the `all_bands` variable
 2. Convert the Random Forest classifer (`ee.Classifier.smileRandomForest()`) to a SVM classifier (use the default parameters)
 
-```diff
-! Question 6: In Table 1, report the accuracy of the four different classifiers you trained represnting combinations of RF/SVM classifiers and all/ visible band inputs. Which classifier has the highest overall accuracy?
-```
+:question:
+***Question 6: In Table 1, report the accuracy of the four different classifiers you trained represnting combinations of RF/SVM classifiers and all/ visible band inputs. Which classifier has the highest overall accuracy?***
+
 
 
 ### Step 7. Make Final Flood Map
@@ -251,9 +254,8 @@ There are several options we can explore here to improve the overall accuracy of
 
 In the previous step, we added an the classified image to the Map referred to as `LULC Classification (Omaha)`. Recall the we 1) acquired a Sentinel-2 image during a flood event 2) sampled a permanent water (e.g. rivers, ponds, lakes) dataset and 3) classified the Sentinel-2 flood image with permanent water dataset. Using your most accurate classification method, investigate the `LULC Classification (Omaha)` image and answer Question 7.
 
-```diff
-! Question 7: What types of water does your LULC Classification (Omaha) map represent? Why might this be a problem if you're interested in only FLOOD waters?
-```
+:question:
+***Question 7: What types of water does your LULC Classification (Omaha) map represent? Why might this be a problem if you're interested in only FLOOD waters?***
 
 To represent flood water, we can remove "permanent water" from our classification image. To do so, we can simply revert back to the JRC Global Surface Water (GSW) dataset that represent permanent water (e.g. rivers, lakes, ponds) and "mask" out permanet water. Copy and paste the following code into the code editor and hit **Run**
 
@@ -273,8 +275,8 @@ Toggle on the "Flood Map (Omaha)" layer and answer Question 8.
 ![image](https://user-images.githubusercontent.com/13280304/141842460-0ced0284-d7f1-42fe-8492-f434ae1f3a4c.png)
 
 
-```diff
-! Question 8: Zoom into a flood affected area (e.g. buildings, agricultural fields) and take a screenshot (use the "Snipping Tool") of your flood map. Paste the screenshot into the submission document.
+:question:
+***Question 8: Zoom into a flood affected area (e.g. buildings, agricultural fields) and take a screenshot (use the "Snipping Tool") of your flood map. Paste the screenshot into the submission document.***
 ```
 
 ## Part 2 - Application of your best classifier to flooding in Queensland, Australia
@@ -292,9 +294,8 @@ Map.addLayer(s2_qld, s2_viz, "Sentinel-2 - Queensland, AUS")
 
 To view the image, pan to Australia and Zoom into the Rockhampton where you see a satellite image added to the map. Invesigate the image, using different visualizations if you choose, and answer Question 9.
 
-```diff
-! Question 9: How does the Sentinel-2 image for Rockhampton, Queesland differ from that of Omaha, NE (hint: think about data noise)? How might this present challenges for flood mapping?
-```
+:question:
+***Question 9: How does the Sentinel-2 image for Rockhampton, Queesland differ from that of Omaha, NE (hint: think about data noise)? How might this present challenges for flood mapping?***
 
 ### Step 2. Create a stratified sample for Rockhampton, QLD
 To evaluate the accuracy of our classifier, as before we need to create a sample of data that can be used for validation. To create a stratified sample, copy and paste the code below into the GEE Code Editor and click **Run**.
@@ -343,9 +344,8 @@ print("Users acc., Rockhampton, QLD", qld_test.consumersAccuracy())
 
 View the print outs in the Console and answer Question 10.
 
-```diff
-! Question 10: What is the overall accuracy of your classifier when applied to the 2017 floods in Rockhampton, QLD? What is the producer's and user's accuracy for the water class?
-```
+:question:
+***Question 10: What is the overall accuracy of your classifier when applied to the 2017 floods in Rockhampton, QLD? What is the producer's and user's accuracy for the water class?***
 
 ### Step 4. Create Flood Map for Rockhampton, QLD
 Finally, as before we can also make a map of flooded area. To do this, copy and paste the code below into the GEE Code Editor and click **Run**.
@@ -362,15 +362,16 @@ Map.addLayer(qld_flood.selfMask().clip(aus_img_geo), {palette:"lightblue"}, "Flo
 
 Zoom into the Map and view the flood map you created for Rockhampton, QLD. Pay particular attention to areas of misclassification and answer Question 11.
 
-```diff
-! Question 11: Identify one systematic (repeated) misclassification in your flood map for Rockhampton, QLD (hint - think of something that looks like water, but isn't water). Why is this misclassification important for flood mapping in the context of urban planning, disaster response, or recovery efforts?
-```
+:question:
+***Question 11: Identify one systematic (repeated) misclassification in your flood map for Rockhampton, QLD (hint - think of something that looks like water, but isn't water). Why is this misclassification important for flood mapping in the context of urban planning, disaster response, or recovery efforts?***
+
 
 ## Part 3 - Submission
-For the Lab 11 assignment the required submissions to D2L are:
+To complete Lab 11 submit the following:
 
-1. the Lab 11 submission document (available on D2L) with all the questions answered
-2. add a link of your GEE code to the Lab 11 submission document in the designated area. To do this click the **Get Link** button and copy and paste the URL.
+1.	The submission document (available on D2L) renamed as **G330.Lab11.[LastName].docx** with the following:
+a.	All the questions answered
+b.	The link to your GEE code copy and pasted at the end of the submission document in the indicated space. To do this click the **Get Link** button and copy and paste the URL.
 
 ![image](https://user-images.githubusercontent.com/13280304/141849048-852ba6b4-b96c-458c-90f9-760485c49dae.png)
 
