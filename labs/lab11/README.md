@@ -87,7 +87,7 @@ This will open up a menu of visualization paramters where you can select bands t
 ![image](https://user-images.githubusercontent.com/13280304/141537208-314aefb4-72d7-4cbf-a6fd-339eb86f71b7.png)
 
 
-***Question 1: Create a new visualization of the Sentinel-2 imagery using a different bands combination. Take a screenshot of your new visualization, add to the submission document, and add 1-2 sentences describing the visualization and what you can see with this new visualization.***
+:question::question:***Question 1: Create a new visualization of the Sentinel-2 imagery using a different bands combination. Take a screenshot of your new visualization, add to the submission document, and add 1-2 sentences describing the visualization and what you can see with this new visualization.***
 
 
 ### Step 3. Add the JRC Global Surface Water Dataset and Visualize
