@@ -255,7 +255,7 @@ In the previous step, we added an the classified image to the Map referred to as
 ! Question 7: What types of water does your LULC Classification (Omaha) map represent? Why might this be a problem if you're interested in only FLOOD waters?
 ```
 
-To represent flood water, we can remove "permanent water" from our classification image. To do so, we can simply revert back to the JRC Global Surface Water (GSW) dataset that represent permanent water (e.g. rivers, lakes, ponds) and "mask" out permanet water. Copy and paste the following code into the code editor and answer Quesiton 8:
+To represent flood water, we can remove "permanent water" from our classification image. To do so, we can simply revert back to the JRC Global Surface Water (GSW) dataset that represent permanent water (e.g. rivers, lakes, ponds) and "mask" out permanet water. Copy and paste the following code into the code editor and hit **Run**
 
 ```js
 // Remove permanet water
@@ -268,8 +268,13 @@ var omaha_flood = maskPermanentWater(omaha_classified)
 Map.addLayer(omaha_flood.selfMask(), {palette:"lightblue"}, "Flood Map (Omaha)")
 ```
 
+Toggle on the "Flood Map (Omaha)" layer and answer Question 8.
+
+![image](https://user-images.githubusercontent.com/13280304/141842460-0ced0284-d7f1-42fe-8492-f434ae1f3a4c.png)
+
+
 ```diff
-! Question 8: Take a screenshot (use the "Snipping Tool") of your flood map and paste into the submission document
+! Question 8: Zoom into a flood affected area and take a screenshot (use the "Snipping Tool") of your flood map. Paste the screenshot into the submission document.
 ```
 
 ## Part 2 - Application of your RF Classifier to flooding in Queensland, Australia on 
