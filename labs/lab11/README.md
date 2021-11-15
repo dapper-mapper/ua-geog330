@@ -87,11 +87,11 @@ This will open up a menu of visualization paramters where you can select bands t
 ![image](https://user-images.githubusercontent.com/13280304/141537208-314aefb4-72d7-4cbf-a6fd-339eb86f71b7.png)
 
 ```diff
-! TASK 1: Create a new visualization of the Sentinel-2 imagery using a different bands combination. Take a screenshot of your new visualization, add to the submission document, and add 1-2 sentences describing the visualization and what you can see with this new visualization.
+! QUESTION 1: Create a new visualization of the Sentinel-2 imagery using a different bands combination. Take a screenshot of your new visualization, add to the submission document, and add 1-2 sentences describing the visualization and what you can see with this new visualization.
 ```
 
 ### Step 3. Add the JRC Global Surface Water Dataset and Visualize
-In order to classify the Sentinel-2 image for Omaha, NE, we need training and validation data. 
+In order to classify the Sentinel-2 image for Omaha, NE, we need training and validation data. To collect this data we will use an alternative dataset known as the JRC Surface Water dataset. From this dataset we can represent areas of permanent water from which to sample water versus non-water (i.e. land) pixels. Copy and paste the code below into the GEE Code Editor (make sure it is BELOW your previous code), and hit **Run**. 
 
 ```js
 // JRC Global Surface Water dataset
@@ -111,8 +111,62 @@ var jrc_omaha = jrc_permanent.clip(s2_omaha.geometry())
 Map.addLayer(jrc_omaha, {palette:["white","blue"]}, "JRC Permanent Water")
 
 ```
+The JRC Global Surface Water dataset was added to the Map. Zoom in and investigate this layer. To investigate actual pixel values, select the **Inspector** tab and then click anywhere on the map to get the value of a pixel. 
+
+![image](https://user-images.githubusercontent.com/13280304/141833239-c41b7e6d-31af-40b4-be3d-7ff9d39e4fff.png)
+
+After investigating the map, answer **Question 2** using the submission document.
+
+```diff
+! QUESTION 2: In the JRC dataset you just prepared, what does a pixel value of 1 represent? 
+```
 
 ### Step 4. Sample Training and Validation Data
+Now that we have a Sentinel-2 image and a classified map of water (JRC GSW dataset) to stratify our sample, we can go ahead and sample our data. Copy and paste the code below into the GEE Code Editor, as always below the code you have already written, and hit **Run**.
 
+```js
+// Create band lists that we can use to subset our data
+// to the band we want to use in models
+var all_bands = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 
+                 'B8', 'B8A', 'B9', 'B11', 'B12']
+var viz_bands = ['B2', 'B3', 'B4']
+
+// Create a dataset that include the Sentinel-2 image for Omaha
+// based on bands we care about and the classification map
+// we will use to sample our data.
+var omaha_input = s2_omaha.select(all_bands) // we'll use all bands in our classification
+  .addBands(jrc_omaha) // layer used to stratify sample
+
+
+// Sample the Omaha, NE image by stratifying the image between
+// water and land classes
+var seed = 123 // DO NOT CHANGE THIS! Used so everyone gets the same answer for grading
+var omaha_sample = omaha_input.stratifiedSample({
+  numPoints: 1500,
+  classBand: 'waterClass',
+  classValues: [0,1],
+  classPoints: [750, 750],
+  dropNulls: true,
+  geometries: true,
+  seed: seed
+});
+
+print(omaha_sample)
+print("# of points in land class", omaha_sample.filter(ee.Filter.eq("waterClass",0)).size())
+print("# of points in water class", omaha_sample.filter(ee.Filter.eq("waterClass",1)).size())
+Map.addLayer(omaha_sample, {}, "Omaha stratified sample")
+```
+
+In the `stratifiedSample` function, there are a few important paramters. First, the `classBand` argument tells function which band in the `omaha_input` variable is to be used for stratifying the data. The `classValues` and `classPoints` arguments then specify how many points to sample per class, in our case the land (0) and water (1) classes. 
+
+After we collected the sample, the data was added to the Map and also printed out in the console. Invesigate the print outs in the console and answer Questions 3 & 4 using the submission document.
+
+![image](https://user-images.githubusercontent.com/13280304/141834304-da933ac7-9313-499b-8b4b-4eca4a46b76e.png)
+
+
+```diff
+! QUESTION 3: How many points were sampled in the land and water classes from the Sentinel-2 dataset? 
+! QUESTION 4: Why did we use a stratified sample? What might happen to the values in each class if we took a "random" sample across the Sentinel-2 image?
+```
 
 ## Part 2 - Application of your RF Classifier to flooding in Queensland, Australia on 
