@@ -86,9 +86,9 @@ This will open up a menu of visualization paramters where you can select bands t
 
 ![image](https://user-images.githubusercontent.com/13280304/141537208-314aefb4-72d7-4cbf-a6fd-339eb86f71b7.png)
 
-```diff
-! QUESTION 1: Create a new visualization of the Sentinel-2 imagery using a different bands combination. Take a screenshot of your new visualization, add to the submission document, and add 1-2 sentences describing the visualization and what you can see with this new visualization.
-```
+
+***Question 1: Create a new visualization of the Sentinel-2 imagery using a different bands combination. Take a screenshot of your new visualization, add to the submission document, and add 1-2 sentences describing the visualization and what you can see with this new visualization.***
+
 
 ### Step 3. Add the JRC Global Surface Water Dataset and Visualize
 In order to classify the Sentinel-2 image for Omaha, NE, we need training and validation data. To collect this data we will use an alternative dataset known as the JRC Surface Water dataset. From this dataset we can represent areas of permanent water from which to sample water versus non-water (i.e. land) pixels. Copy and paste the code below into the GEE Code Editor (make sure it is BELOW your previous code), and hit **Run**. 
