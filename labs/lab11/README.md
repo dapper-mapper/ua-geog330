@@ -196,7 +196,7 @@ print("# of points in validation dataset", omaha_validation.size())
 Invesigate the print outs in the **Console** and answer Question 5 using the submission document.
 
 ```diff
-! QUESTION 4: How many data points are in the training dataset? How many in the validation dataset?
+! QUESTION 5: How many data points are in the training dataset? How many in the validation dataset?
 ```
 
 ### Step 6. Train a Random Forest (RF) classifier
