@@ -199,11 +199,50 @@ Invesigate the print outs in the **Console** and answer Question 5 using the sub
 ! QUESTION 5: How many data points are in the training dataset? How many in the validation dataset?
 ```
 
-### Step 6. Train a Random Forest (RF) classifier
+### Step 6. Train and Evaluate Random Forest (RF) and Support Vector Machine (SVM) Classifiers
+All the prior steps were simply data preparation to TRAIN and EVALUTE (VALIDATE) machine learning classifiers. Now that we have this data prepared we can input our training dataset into several classifiers and evaluate its performance. The code below runs a Random Forest (RF) classifier, evaluates its accuracy, and adds a classified image to the map. Copy and paste the code below into the GEE Code Editor and hit **Run**
 
+```js
+// Apply the data to a Random Forest (RF) classifier
 
+// Initiate the classifier and its parameters
+var omaha_classifier = ee.Classifier.smileRandomForest({
+  numberOfTrees:10, 
+  seed:seed})
 
-// Q2 - what is the accuracy
-// Q2a - why is the accuracy measurement an overestimate?
+// Train the classifier with the training data
+// and using ALL the Sentinel-2 bands
+omaha_classifier = omaha_classifier.train({
+  features: omaha_training,
+  classProperty: 'waterClass',
+  inputProperties: viz_bands // we defined this earlier; all S2 bands
+  })
+
+// Calculate the accuracy with the validation data by
+// first classifying the validation data with the
+// classifer we just trained
+var omaha_validated = omaha_validation.classify(omaha_classifier)
+
+// Get an error matrix representing expected accuracy.
+var omaha_test = omaha_validated.errorMatrix('waterClass', 'classification')
+print('Validation overall accuracy: ', omaha_test.accuracy())
+
+// Add the classified data to the map
+var omaha_classified = omaha_input.classify(omaha_classifier)
+Map.addLayer(omaha_classified.selfMask(), {palette:"red"}, "LULC Classification (Omaha)")
+```
+
+The overall accuracy of the Random Forest classifier is 90.9%, an impressive result. But can we do better? Note that when we train the `omaha_classifier`, as input data we only use the visible bands of Sentinel-2 (e.g. Red, Green, Blue). This is specified in the `train()` function with the `inputProperties` parameter. In addition, we only try one classifier while there are several other options. For example, instead of using `ee.Classifier.smileRandomForest()` we could use a classifier using the Support Vector Machines (SVM) algorithm. Search the **Docs** tab for SVM and read the documentation on this classifier.
+
+![image](https://user-images.githubusercontent.com/13280304/141838506-5ea03142-6e91-412e-b566-44d1464133ee.png)
+
+There are several options we can explore here to improve the overall accuracy of our classifier. Toggle the following inputs and fill out the table associated with Question 6 in the submission document.
+
+1. Change the `inputProperties` argument to the `all_bands` variable
+2. Convert the Random Forest classifer (`ee.Classifier.smileRandomForest()`) to a SVM classifier
+
+```diff
+// Question 6: In Table 1, report the accuracy of the four different classifiers you trained represnting combinations of RF/SVM classifiers and all/ visible band inputs. Which classifier has the highest overall accuracy?
+```
 
 ## Part 2 - Application of your RF Classifier to flooding in Queensland, Australia on 
