@@ -113,7 +113,7 @@ Map.addLayer(jrc_omaha, {palette:["white","blue"]}, "JRC Permanent Water")
 ```
 The JRC Global Surface Water dataset was added to the Map. Zoom in and investigate this layer. To investigate actual pixel values, select the **Inspector** tab and then click anywhere on the map to get the value of a pixel. 
 
-![image](https://user-images.githubusercontent.com/13280304/141833239-c41b7e6d-31af-40b4-be3d-7ff9d39e4fff.png)
+![image](https://user-images.githubusercontent.com/13280304/141839208-f4d1e1b9-4318-43d5-8352-8aeb6f59cb9a.png)
 
 After investigating the map, answer **Question 2** using the submission document.
 
