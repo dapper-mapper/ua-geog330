@@ -239,7 +239,7 @@ The overall accuracy of the Random Forest classifier is 90.9%, an impressive res
 There are several options we can explore here to improve the overall accuracy of our classifier. Toggle the following inputs and fill out the table associated with Question 6 in the submission document.
 
 1. Change the `inputProperties` argument to the `all_bands` variable
-2. Convert the Random Forest classifer (`ee.Classifier.smileRandomForest()`) to a SVM classifier
+2. Convert the Random Forest classifer (`ee.Classifier.smileRandomForest()`) to a SVM classifier (use the default parameters)
 
 ```diff
 ! Question 6: In Table 1, report the accuracy of the four different classifiers you trained represnting combinations of RF/SVM classifiers and all/ visible band inputs. Which classifier has the highest overall accuracy?
