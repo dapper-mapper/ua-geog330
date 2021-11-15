@@ -274,7 +274,7 @@ Toggle on the "Flood Map (Omaha)" layer and answer Question 8.
 
 
 ```diff
-! Question 8: Zoom into a flood affected area and take a screenshot (use the "Snipping Tool") of your flood map. Paste the screenshot into the submission document.
+! Question 8: Zoom into a flood affected area (e.g. buildings, agricultural fields) and take a screenshot (use the "Snipping Tool") of your flood map. Paste the screenshot into the submission document.
 ```
 
 ## Part 2 - Application of your RF Classifier to flooding in Queensland, Australia on 
