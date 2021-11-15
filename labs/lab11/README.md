@@ -366,3 +366,11 @@ Zoom into the Map and view the flood map you created for Rockhampton, QLD. Pay p
 ! Question 11: Identify one systematic (repeated) misclassification in your flood map for Rockhampton, QLD (hint - think of something that looks like water, but isn't water). Why is this misclassification important for flood mapping in the context of urban planning, disaster response, or recovery efforts?
 ```
 
+## Part 3 - Submission
+For the Lab 11 assignment the required submissions to D2L are:
+
+1. the Lab 11 submission document (available on D2L) with all the questions answered
+2. add a link of your GEE code to the Lab 11 submission document in the designated area. To do this click the **Get Link** button and copy and paste the URL.
+
+![image](https://user-images.githubusercontent.com/13280304/141849048-852ba6b4-b96c-458c-90f9-760485c49dae.png)
+
