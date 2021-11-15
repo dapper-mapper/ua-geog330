@@ -278,3 +278,48 @@ Toggle on the "Flood Map (Omaha)" layer and answer Question 8.
 ```
 
 ## Part 2 - Application of your RF Classifier to flooding in Queensland, Australia on 
+
+### Step 1. New image
+
+```js
+// ROCKHAMPTON, QUEENSLAND, AUSTRALIA
+// Sentinel-2 Image for floods in Rockhampton in 2017
+var s2_qld = ee.Image("COPERNICUS/S2/20170408T001211_20170408T001211_T55KHQ")
+Map.addLayer(s2_qld, s2_viz, "Sentinel-2 - Queensland, AUS")
+```
+
+```diff
+! Question 9: How does the Sentinel-2 image for Rockhampton, Queesland differ from that of Omaha, NE (hint: think about data noise)? How might this present challenges for flood mapping?
+```
+
+### Step 2. Sample
+
+```Js
+// Clip the area of the JRC Global Surface Water dataset
+// to the same extent as the Sentinel-2 image for Rockhampton, Queensland
+var jrc_qld = jrc_permanent.clip(s2_qld.geometry())
+var qld_input = s2_qld.select(all_bands) // we'll use all bands in our classification
+  .addBands(jrc_qld) // layer used to stratify sample
+
+// Create a region that we want to sample over, this step is so
+// we don't sample ocean water along the coast of Rockhampton
+var aus = countries.filter(ee.Filter.eq("country_na", "Australia")).first()
+var aus_img_geo = s2_qld.geometry().intersection(aus.geometry())
+
+// Get stratified sample
+var qld_sample = qld_input.stratifiedSample({
+  numPoints: 500,
+  classBand: 'waterClass',
+  classValues: [0,1],
+  classPoints: [250, 250],
+  region: aus_img_geo,
+  dropNulls: true,
+  geometries: true,
+  seed: seed
+})
+
+// Add to the map
+Map.addLayer(qld_sample, {}, "Rockhampton stratified sample")
+```
+
+
