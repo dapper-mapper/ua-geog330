@@ -245,4 +245,31 @@ There are several options we can explore here to improve the overall accuracy of
 ! Question 6: In Table 1, report the accuracy of the four different classifiers you trained represnting combinations of RF/SVM classifiers and all/ visible band inputs. Which classifier has the highest overall accuracy?
 ```
 
+
+### Step 7. Make Final Flood Map
+**IMPORTANT NOTE** From this point forward we will be using your most accurate classification method. Be sure to have the parameters in your code set to this method.
+
+In the previous step, we added an the classified image to the Map referred to as `LULC Classification (Omaha)`. Recall the we 1) acquired a Sentinel-2 image during a flood event 2) sampled a permanent water (e.g. rivers, ponds, lakes) dataset and 3) classified the Sentinel-2 flood image with permanent water dataset. Using your most accurate classification method, investigate the `LULC Classification (Omaha)` image and answer Question 7.
+
+```diff
+! Question 7: What types of water does your LULC Classification (Omaha) map represent? Why might this be a problem if you're interested in only FLOOD waters?
+```
+
+To represent flood water, we can remove "permanent water" from our classification image. To do so, we can simply revert back to the JRC Global Surface Water (GSW) dataset that represent permanent water (e.g. rivers, lakes, ponds) and "mask" out permanet water. Copy and paste the following code into the code editor and answer Quesiton 8:
+
+```js
+// Remove permanet water
+function maskPermanentWater(class_img){
+  var jrc_mask = jrc_permanent.neq(1)
+  return class_img.updateMask(jrc_mask)
+}
+
+var omaha_flood = maskPermanentWater(omaha_classified)
+Map.addLayer(omaha_flood.selfMask(), {palette:"lightblue"}, "Flood Map (Omaha)")
+```
+
+```diff
+! Question 8: Take a screenshot (use the "Snipping Tool") of your flood map and paste into the submission document
+```
+
 ## Part 2 - Application of your RF Classifier to flooding in Queensland, Australia on 
