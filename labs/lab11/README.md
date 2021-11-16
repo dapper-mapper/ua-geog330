@@ -277,7 +277,7 @@ Toggle on the "Flood Map (Omaha)" layer and answer Question 8.
 
 :question:
 ***Question 8: Zoom into a flood affected area (e.g. buildings, agricultural fields) and take a screenshot (use the "Snipping Tool") of your flood map. Paste the screenshot into the submission document.***
-```
+
 
 ## Part 2 - Application of your best classifier to flooding in Queensland, Australia
 Impressed with your work for FEMA and in Omaha, the municipal government of Rockhampton, Queensland, Australia reached out to you and asked for a flood map representing the extent of flooding in 2017. Since you already created a classifier for flood in Omaha, NE you decide as a quick analysis to apply this classifier to Sentinel-2 imagery for the 2017 floods in Rockhampton, QLD. The steps below walk through how to create a flood map for Rockhmapton and evaluate its accuracy.
