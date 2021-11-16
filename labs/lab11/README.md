@@ -124,7 +124,7 @@ After investigating the map, answer **Question 2** using the submission document
 
 
 ### Step 4. Sample Training and Validation Data
-Now that we have a Sentinel-2 image and a classified map of water (JRC GSW dataset) to stratify our sample, we can go ahead and sample our data. Copy and paste the code below into the GEE Code Editor, as always below the code you have already written, and hit **Run**.
+Now that we have a Sentinel-2 image and a classified map of water (JRC GSW dataset) to stratify our sample, we can go ahead and sample our data. Copy and paste the code below into the GEE Code Editor, as always copy below the code you have already written, and hit **Run**.
 
 ```js
 // Create band lists that we can use to subset our data
