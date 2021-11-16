@@ -142,7 +142,7 @@ var omaha_input = s2_omaha.select(all_bands) // we'll use all bands in our class
 
 // Sample the Omaha, NE image by stratifying the image between
 // water and land classes
-var seed = 123 // DO NOT CHANGE THIS! Used so everyone gets the same answer for grading
+var seed = 431 // DO NOT CHANGE THIS! Used so everyone gets the same answer for grading
 var omaha_sample = omaha_input.stratifiedSample({
   numPoints: 1500,
   classBand: 'waterClass',
