@@ -309,6 +309,7 @@ var qld_input = s2_qld.select(all_bands) // we'll use all bands in our classific
 
 // Create a region that we want to sample over, this step is so
 // we don't sample ocean water along the coast of Rockhampton
+var countries = ee.FeatureCollection("USDOS/LSIB_SIMPLE/2017");
 var aus = countries.filter(ee.Filter.eq("country_na", "Australia")).first()
 var aus_img_geo = s2_qld.geometry().intersection(aus.geometry())
 
