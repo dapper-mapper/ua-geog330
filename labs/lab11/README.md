@@ -78,7 +78,7 @@ var s2_viz = {bands:["B12","B8A","B4"],
 Map.addLayer(s2_omaha, s2_viz, "Sentinel-2 - Omaha, MO") 
 ```
 
-The variable `s2` is a Sentinel-2 image that we call into our script by using the entire image ID. The variable `s2_viz` provides details for how to visualize the Sentinel-2 imagery. Here we use an RGB combination of (B12/B8A/B4) or (SWIR/NIR/Red). The SWIR and NIR bands are particulary useful for visualizing water as these wavelenghts are highly absorbed by water. However, to change the visualization hover the mouse of the **Layers** button in the Map view and select the :gear: button.
+The variable `s2` is a Sentinel-2 image that we call into our script by using the entire image ID. The variable `s2_viz` provides details for how to visualize the Sentinel-2 imagery. Here we use an RGB combination of (B12/B8A/B4) or (SWIR/NIR/Red). The SWIR and NIR bands are particulary useful for visualizing water as these wavelenghts efficiently absorbed by water. However, to change the visualization hover the mouse of the **Layers** button in the Map view and select the :gear: button.
 
 ![image](https://user-images.githubusercontent.com/13280304/141536838-b0925512-3803-4ee0-8e45-46511528fd51.png)
 
