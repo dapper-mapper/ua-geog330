@@ -368,7 +368,7 @@ Zoom into the Map and view the flood map you created for Rockhampton, QLD. Pay p
 
 
 ## Part 3 - Submission
-To complete Lab 11 submit the following:
+To complete Lab 10 submit the following:
 
 1.	The submission document (available on D2L) renamed as **G330.Lab11.[LastName].docx** with the following:
 a.	All the questions answered
