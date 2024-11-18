@@ -1,4 +1,4 @@
-# Lab 11 - Supervised Classification of Flood Events in Google Earth Engine (GEE)
+# Lab 10 - Supervised Classification of Flood Events in Google Earth Engine (GEE)
 
 ## Objectives
 -	Learn to sample training and validation data and extract reflectance values and indices from satellite imagery
